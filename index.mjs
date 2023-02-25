@@ -1,11 +1,14 @@
-// exports.action = () => {  <- the common.js way
-//     console.log("hello");
-// }
+import { readFile, writeFile } from 'fs/promises';
 
-export const action = () => {  // <- ECMAScript way, a named export
-    console.log("hello");
+let template = await readFile(new URL('template.html', import.meta.url), 'utf-8');
+
+const data= {
+    title: 'Learn Node.js',
+    body: 'This is the final HTML'
 }
 
-// renaming files to *.mjs to indicate they are modules. 
-// To keep *.js extension configure package.json
-// *.mjs is good for migrating from common.js syntax to ECMAScript syntax
+for(const [k,v] of Object.entries(data)) {
+    template = template.replace(`{${k}}`, v);
+}
+
+await writeFile(new URL('index.html', import.meta.url), template);

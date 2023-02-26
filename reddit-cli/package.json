@@ -6,12 +6,17 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "bin": { 
+  "bin": {
     "reddit": "./reddit.mjs"
   },
   "explanations": {
     "bin": " adds following commands to the /usr/bin folder so these commands can be used globally. Goes by key:entryFile. Running install -g in the package adds the CLI commands locally"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "node-fetch": "^3.3.0",
+    "open": "^8.4.2",
+    "yargs": "^17.7.1"
+  }
 }

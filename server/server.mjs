@@ -30,6 +30,7 @@ app.get("/todo/:id", (req, res) => {
   res.json({ data: todo });
 });
 
-app.listen(8000, () => {
-  console.log("Server on http://localhost:8000");
+app.listen(process.env.PORT, () => {
+  // deploy environments like Heroku all use PORT as a env variable
+  console.log(`Server on http://localhost:${process.env.PORT}`);
 });

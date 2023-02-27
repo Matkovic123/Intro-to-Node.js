@@ -13,7 +13,7 @@ const db = [];
 app.post("/todo", (req, res) => {
   const newTodo = {
     id: Date.now(),
-    text: req.body.text,
+    text: req.body.text, // body parser handles this line, collects buffer chunks and appends them like in the raw http server
   };
 
   db.push(newTodo);
@@ -22,7 +22,12 @@ app.post("/todo", (req, res) => {
 });
 
 app.get("/todo", (req, res) => {
-    res.json(db);
+  res.json(db);
+});
+
+app.get("/todo/:id", (req, res) => {
+  const todo = db.find((t) => t.id === +req.params.id);
+  res.json({ data: todo });
 });
 
 app.listen(8000, () => {
